@@ -21,11 +21,25 @@ video {
 }
 
 </style>
+<script>
+function random_bg_color() {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    let bgColor =  `rgb( ${x}, ${y}, ${z} )`;
+    //document.body.innerText = bgColor;
+
+    document.getElementById("container").style.background = bgColor;
+}
+
+setInterval(random_bg_color, 500); // You can easily change Interval here
+
+</script> 
 <title>FRIDAY</title>
 </head>
 <body>
-<div class="container">
-    <video loop controls>
+<div class="container" id="container">
+    <video loop controls id="friday">
       <source src="mufasa.mp4" type="video/mp4">
     </video>
 </div>
