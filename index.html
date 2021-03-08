@@ -3,16 +3,19 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.container {
+.full{
   position: absolute;
   top:0;
   left:0;
   right:0;
   bottom: 0;
+  background: #fff;
+}
+
+#container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: #fff;
 }
 
 video {
@@ -20,28 +23,73 @@ video {
   object-fit: contain;
 }
 
+#cover{
+ display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#button{
+    font-size: 40px;
+    font-weight: 700;
+    font-family: "Comic Sans MS", cursive, sans-serif; 
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+
 </style>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="container" class="full">
+    <video loop nocontrols preload="auto" id="friday">
+      <source src="mufasa.mp4" type="video/mp4">
+    </video>
+</div>
+<div class="full" id="cover">
+    <div id="button">
+        !? Trust Me ?!
+    </div>
+</div>
 <script>
+
+var container = document.getElementById("container");
+
 function random_bg_color() {
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
     let bgColor =  `rgb( ${x}, ${y}, ${z} )`;
-    //document.body.innerText = bgColor;
-
-    document.getElementById("container").style.background = bgColor;
+    container.style.background = bgColor;
 }
 
-setInterval(random_bg_color, 500); // You can easily change Interval here
+var vid = document.getElementById("friday");
 
+$( document ).ready(function() {
+    document.title = "Do you trust me???";
+    $("#button").click(()=>{
+        $("#friday").hide();
+        $("#cover").fadeOut(2000);
+        document.title = "....";
+        setTimeout(() => {
+            $("#friday").fadeIn(5000);
+            vid.play();
+            document.title = "....IT'S.....";
+            setTimeout(() => {
+                document.title = ".......";
+                setTimeout(() => {
+                    document.title = "!! FRIDAY !!";
+                }, 1800);
+            }, 2000);
+        }, 3000);
+        setInterval(random_bg_color, 500);
+    
+  });
+});
 </script> 
-<title>FRIDAY</title>
-</head>
-<body>
-<div class="container" id="container">
-    <video loop controls id="friday">
-      <source src="mufasa.mp4" type="video/mp4">
-    </video>
-</div>
+
 </body>
 </html>
